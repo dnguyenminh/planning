@@ -1,0 +1,64 @@
+@startuml
+' --- Cài đặt giao diện ---
+skinparam monochrome reverse
+skinparam shadowing false
+skinparam rectangle {
+    roundCorner 10
+    borderColor #4A8D35
+    backgroundColor #F8F8F8
+}
+skinparam arrow {
+    color #4A8D35
+}
+
+' --- Tiêu đề ---
+title Sơ đồ tổ chức dự án\n(Debt Collection Software)
+
+' --- Định nghĩa các vai trò ---
+rectangle "<b>Project Sponsor</b>" as PS
+rectangle "<b>BU Director</b>" as BUDir
+rectangle "<b>IT Director</b>" as ITD
+rectangle "<b>IT Project Manager</b>" as PM
+rectangle "<b>System Owner</b>" as SO
+rectangle "<b>Other SOs\n<b>ESB</b>,\n<b>ED</b>,\n<b>CMS</b>,\n<b>LMS</b>,\n<b>...</b>" as Other_SOs
+rectangle "<b>BU Coordinator</b>" as BUCoor
+rectangle "<b>Auto Dialiers</b>" as AutoDialiers
+rectangle "<b>Manual Dialiers</b>" as ManualDialiers
+rectangle "<b>...</b>" as Others
+rectangle "<b>Quality Controls</b>" as QCs
+
+
+
+rectangle "<b>BA & QA Lead</b>" as BAQA_Lead
+rectangle "<b>BPM Team Lead</b>" as BPM_Lead
+rectangle "<b>ETL Team Lead</b>" as ETL_Lead
+
+rectangle "2 Business Analysts" as BAs
+rectangle "2 QA Engineers" as QAs
+rectangle "10 BPM Developers" as BPM_Devs
+rectangle "8 ETL Developers" as ETL_Devs
+
+' --- Vẽ mối quan hệ (quan trọng nhất) ---
+PS --> BUDir
+PS --> ITD
+ITD --> PM
+PM --> Other_SOs
+PM --> SO
+SO --> BAQA_Lead
+SO --> BPM_Lead
+SO --> ETL_Lead
+BUDir --> BUCoor
+BUCoor --> AutoDialiers
+BUCoor --> ManualDialiers
+BUCoor --> Others
+BUCoor --> QCs
+
+
+BAQA_Lead --> BAs
+BAQA_Lead --> QAs
+
+BPM_Lead --> BPM_Devs
+
+ETL_Lead --> ETL_Devs
+
+@enduml

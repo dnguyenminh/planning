@@ -1,0 +1,68 @@
+- Archive Pega Case
+	+ Copy data from Pega CSM archive
+	+ Export current Pega Data
+	+ Implement archiving service
+	+ Implement API for search/access archiving data
+
+- Design Generic Flow
+	+ Interaction cases
+	+ Service cases
+	+ Management Update cases
+- Integration
+	+ WDE (Genesys)
+	+ MuleSoft/ESB (Customer 360)
+	+ MuleSoft/ESB (Service cases - Get/Update)
+	+ Others (Antifraud, Pega Collection, FEON, VMX, ...)
+- Implement Interaction cases
+	+ Customer 360 UI
+	+ Realtime data refreshing
+	+ Inbound
+	+ Outbound
+	+ Email
+	+ Chat
+	+ Search
+- Implement Service Cases
+	+ Master data inputting
+	+ UI Sections for service cases
+	+ Case Summary UI
+	+
+- Implement management tools
+	+ Master data
+		- Additional Properties
+		- Master data tree
+		- UI
+		-
+	+ Customer data
+	+ SLA management
+	+ Notification management
+		* Channel Management
+		* Template management
+		* SMS
+		* ZMS/ZNS
+		* Mobile APP
+		* Chat hub
+	+ Bulk actions
+		- Export excel files
+		- Import excel files
+		- Search cases
+
+- Reports
+	+ Realtime TAT
+	+ Realtime Summary
+	+ Extract TAT
+	+ Extract Summary
+	+ ...
+
+- Services
+	+ UMS
+	+ Fraud Case listener
+	+ Receive Pega Collection Hotline result
+	+
+
+
+- Migrate data for the first go line
+- Archive cases every 3 months
+- Search archival cases
+
+
+
