@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+skinparam backgroundColor #F8F9FA
+skinparam activity {
+  BackgroundColor<<system>> #CFE2FF
+  BackgroundColor<<pega>> #D1E7DD
+  BackgroundColor<<agent>> #FFF3CD
+  BackgroundColor<<ivr>> #E2E3E5
+  BorderColor black
+  FontColor black
+}
+skinparam partition {
+  BackgroundColor #E9ECEF
+  FontColor #212529
+  BorderColor #495057
+}
+
+title **Pega Collection Flow**
+caption Begin of day's and user's processes
+
+partition "Enterprise Database " {
+  start
+  :Collect data from:\n**LMS**, **BICC**, **CMS**, **Payment** <<system>>;
+}
+
+partition "Pega Collection" {
+  :Allocate Loan/Card contracts \n by the BU rules to:\n- Work list of Manual Dialer\n- Work queue of Auto Dialer\n- **IVR**, **VoiceBots**, **iCollect**, ...\n<<pega collx>>;
+  split
+    partition "Call Agents" {
+      :Get customers' responses\n<<agent>>;
+      :Update Action codes and\nlog trails\n<<agent>>;
+    }
+  split again
+    partition "iCollect" {
+      :Meet customer\n<<agent>>;
+      :Update Action codes and\nlog trails\n<<agent>>;
+    }
+  split again
+    partition "IVR" {
+      :Tell customer to pay\n<<ivr>>;
+    }
+  split again
+    partition "ZNS/SMS" {
+      :Send reminder<noti>>;
+    }
+  split again
+    partition "Voice Bots" {
+      :Get customers' responses\n<<bot>>;
+    }
+  end split
+    :Process the input action codes;
+  stop
+}
+@enduml
