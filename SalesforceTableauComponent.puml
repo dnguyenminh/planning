@@ -1,0 +1,20 @@
+@startuml
+' Sơ đồ Component mô tả mối quan hệ
+title Sơ đồ Component: Tích hợp Salesforce và Tableau
+
+actor "Người dùng" as user
+cloud "Hệ sinh thái Salesforce" as salesforce_cloud {
+    component "Salesforce CRM" as crm {
+        component "Tableau Dashboard\n(Được nhúng)" as dashboard
+    }
+    component "Tableau" as tableau
+}
+database "Các nguồn dữ liệu khác\n(Database, Excel...)" as other_ds
+
+user -right-> crm : Tương tác & làm việc
+crm ..> dashboard : Hiển thị
+tableau ..> dashboard : Cung cấp & Tạo ra
+tableau -down-> crm : Kết nối lấy dữ liệu
+tableau -down-> other_ds : Kết nối lấy dữ liệu
+
+@enduml
