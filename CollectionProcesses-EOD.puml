@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+' ==== GLOBAL STYLE ====
+skinparam backgroundColor #F8F9FA
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+
+' ==== ACTIVITY STYLES ====
+skinparam activity {
+  BackgroundColor<<pega>> #BCE3C8-#D1E7DD
+  BackgroundColor<<bix>> #BFD7ED-#CFE2FF
+  BackgroundColor<<bicc>> #FFE082-#FFF3CD
+  BorderColor black
+  FontColor black
+  FontSize 13
+  RoundCorner 15
+}
+
+' ==== PARTITION STYLE ====
+skinparam partition {
+  BackgroundColor #E9ECEF
+  FontColor #212529
+  BorderColor #6C757D
+  FontSize 14
+}
+
+' ==== TITLE & CAPTION ====
+title <b><color:#1B4965>Daily Data Flow - Pega Collection to BICC</color></b>
+caption <i><color:#6C757D>Automated data extraction and reporting process</color></i>
+
+' ==== DIAGRAM BODY ====
+partition "Pega Collection" {
+  start
+  :Collect data from:\n<b>Pega Collection</b>, <b>VoiceBots</b>, <b>iCollect</b>\n<<pega>>;
+  :Extract user activities, action codes and\nlog trails data\n<<pega>>;
+}
+
+partition "BIX" {
+  :Store user activities, action codes and\nlog trails data\n<<bix>>;
+}
+
+partition "BICC" {
+  :Collect and aggregate data\nfor reporting\n<<bicc>>;
+  stop
+}
+@enduml
