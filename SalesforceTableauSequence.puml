@@ -1,0 +1,26 @@
+@startuml
+' Sơ đồ tuần tự mô tả luồng hoạt động
+title Sơ đồ Tuần tự: Tải một Dashboard Tableau trong Salesforce
+
+actor "Người dùng" as user
+participant "Trình duyệt\n(Salesforce UI)" as crm
+participant "Tableau" as tableau
+database "Nguồn dữ liệu\n(Salesforce, DB,...)" as ds
+
+activate user
+user -> crm : 1. Mở trang Salesforce có Dashboard
+activate crm
+crm -> tableau : 2. Yêu cầu tải nội dung Dashboard
+activate tableau
+tableau -> ds : 3. Truy vấn dữ liệu cần thiết
+activate ds
+ds --> tableau : 4. Trả về dữ liệu
+deactivate ds
+tableau -> tableau : 5. Render (kết xuất) các biểu đồ
+tableau --> crm : 6. Gửi Dashboard đã render về
+deactivate tableau
+crm --> user : 7. Hiển thị Dashboard cho người dùng
+deactivate crm
+deactivate user
+
+@enduml
